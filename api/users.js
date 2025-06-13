@@ -4,12 +4,12 @@ export default router;
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-import { createUser, loginUser } from "../db/queries/users";
+import { createUser, loginUser, getUserById } from "../db/queries/users";
 
 
 //verifyToken
 export const verifyToken = (req, res, next)=>{
-    if (!req.headers[`authorization`]){return res.status(401).send(`No token provided`)}
+    if (!req.headers[`authorization`]){return res.status(401).send(`No token provided`)};
     const authHeader = req.headers[`authorization`];
     const token = authHeader.split(' ')[1];
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -19,18 +19,18 @@ export const verifyToken = (req, res, next)=>{
 
 
 
-//POST /register
+//POST /users/register
 router.route("/register").post(async(req, res)=>{
     const {username, password} = req.body;
 
     try{
-        const hashedpassword = await bcrypt.hash(password, 5)
+        const hashedpassword = await bcrypt.hash(password, 5);
 
         const newUser = await createUser({username, password:hashedpassword});
 
         if (!newUser){
             return res.status(400).send(`New user could not be registered.`)
-        }
+        };
 
         const token = jwt.sign({id: newUser.id, username: newUser.username}, process.env.JWT_SECRET);
 
@@ -38,13 +38,13 @@ router.route("/register").post(async(req, res)=>{
 
     }catch(err){
         console.log(err);
-        res.send(`There was an error registering the user.`)
+        res.send(`There was an error registering the user.`);
     }
 });
 
 
 
-//POST /login
+//POST /users/login
 router.route("/login").post(async(req, res)=>{
     const {username, password} = req.body;
 
@@ -65,8 +65,25 @@ router.route("/login").post(async(req, res)=>{
         console.log(err);
         res.send(`Unable to login.`)
     }
-})
+});
 
 
+
+//GET /users/me
+router.route("/:id").get(async(req, res)=>{
+    const id = req.params.id;
+
+    if(!Number.isInteger(id) && id < 0){
+        return res.status(400).send(`Please use a valid number for the ID.`)
+    };
+
+    const user = await getUserById(id);
+
+    if (!user){
+        return res.status(404).send(`User not found.`)
+    };
+
+    res.send(user);
+});
 
 
