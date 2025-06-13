@@ -6,3 +6,11 @@ CREATE TABLE users(
     password TEXT NOT NULL
 );
 
+DROP TABLE IF EXISTS reviews;
+
+CREATE TABLE reviews(
+    id SERIAL PRIMARY KEY,
+    rating INTEGER NOT NULL(rating between 1 and 5),
+    comment TEXT,
+    product_id INTEGER NOT NULL FOREIGN KEY REFERENCES products(id)
+);
