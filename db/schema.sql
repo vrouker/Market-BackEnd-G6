@@ -14,3 +14,12 @@ CREATE TABLE reviews(
     comment TEXT,
     product_id INTEGER NOT NULL FOREIGN KEY REFERENCES products(id)
 );
+
+DROP TABLE IF EXISTS orders;
+
+CREATE TABLE orders (
+    id SERIAL PRIMARY KEY,
+    date NOT NULL,
+    note text,
+    user_id INTEGER NOT Null FOREIGN KEY REFERENCES users(id)
+);
