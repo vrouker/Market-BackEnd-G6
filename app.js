@@ -1,7 +1,8 @@
 import express from "express";
 const app = express();
 export default app;
-import usersRouter from "./api/users";
+import usersRouter from "./api/users.js";
+import ordersRouter from "./api/orders.js";
 
 
 
@@ -9,6 +10,8 @@ import usersRouter from "./api/users";
 app.use(express.json());
 
 app.use("/users", usersRouter);
+
+app.use("/orders", ordersRouter);
 
 
 app.use((err, req, res, next)=>{
