@@ -1,12 +1,13 @@
 import express from "express";
 const app = express();
 export default app;
+import cors from "cors";
 import usersRouter from "./api/users.js";
 import ordersRouter from "./api/orders.js";
 
 
 
-
+app.use(cors());
 app.use(express.json());
 
 app.use("/users", usersRouter);

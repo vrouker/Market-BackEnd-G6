@@ -4,7 +4,7 @@ export default router;
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-import { createUser, loginUser, getUserById } from "../db/queries/users";
+import { createUser, loginUser, getUserById } from "../db/queries/users.js";
 
 
 //verifyToken
@@ -22,11 +22,12 @@ export const verifyToken = (req, res, next)=>{
 //POST /users/register
 router.route("/register").post(async(req, res)=>{
     const {username, password} = req.body;
-
     try{
         const hashedpassword = await bcrypt.hash(password, 5);
+        console.log(`be line 27`, hashedpassword);
 
         const newUser = await createUser({username, password:hashedpassword});
+        console.log(`be 30`, newUser);
 
         if (!newUser){
             return res.status(400).send(`New user could not be registered.`)
@@ -38,7 +39,7 @@ router.route("/register").post(async(req, res)=>{
 
     }catch(err){
         console.log(err);
-        res.send(`There was an error registering the user.`);
+        res.json(`There was an error registering the user.`);
     }
 });
 
@@ -63,7 +64,7 @@ router.route("/login").post(async(req, res)=>{
 
     }catch(err){
         console.log(err);
-        res.send(`Unable to login.`)
+        res.json(`Unable to login.`)
     }
 });
 
