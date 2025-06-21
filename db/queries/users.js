@@ -20,8 +20,11 @@ export async function loginUser({username}){
   const sql = `SELECT * FROM users WHERE username = $1`;
 
   const {rows:user} = await db.query(sql, [username]);
+  console.log(`query`, user[0])
+  
 
-  return user;
+  return user[0];
+  
 };
 
 
@@ -32,5 +35,5 @@ export async function getUserById(id){
     
   const {rows: user} = await db.query(sql, [id]);
 
-  return user;
+  return user[0];
 };

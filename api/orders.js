@@ -1,6 +1,8 @@
-
-import { verifyToken } from "./users";
-import { getOrders, createOrder } from "../db/queries/orders";
+import express from "express";
+const router = express.Router();
+export default router;
+import { verifyToken } from "./users.js";
+import { getOrders, createOrder } from "../db/queries/orders.js";
 
 
 
