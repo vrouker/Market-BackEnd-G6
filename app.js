@@ -4,6 +4,7 @@ export default app;
 import cors from "cors";
 import usersRouter from "./api/users.js";
 import ordersRouter from "./api/orders.js";
+import productsRouter from "./api/products.js";
 
 
 
@@ -13,6 +14,8 @@ app.use(express.json());
 app.use("/users", usersRouter);
 
 app.use("/orders", ordersRouter);
+
+app.use("/products", productsRouter);
 
 
 app.use((err, req, res, next)=>{

@@ -6,7 +6,7 @@ CREATE TABLE users(
     password TEXT NOT NULL
 );
 
-DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS products CASCADE;
 
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
@@ -19,16 +19,16 @@ DROP TABLE IF EXISTS reviews;
 
 CREATE TABLE reviews(
     id SERIAL PRIMARY KEY,
-    rating INTEGER NOT NULL(rating between 1 and 5),
+    rating INTEGER NOT NULL CHECK (rating BETWEEN 1 AND 5),
     comment TEXT,
-    product_id INTEGER NOT NULL FOREIGN KEY REFERENCES products(id)
+    product_id INTEGER NOT NULL REFERENCES products(id)
 );
 
 DROP TABLE IF EXISTS orders;
 
 CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
-    date NOT NULL,
+    date DATE NOT NULL,
     note text,
-    user_id INTEGER NOT Null FOREIGN KEY REFERENCES users(id)
+    user_id INTEGER NOT NULL REFERENCES users(id)
 );
