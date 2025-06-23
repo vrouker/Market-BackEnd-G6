@@ -10,3 +10,13 @@
     const { rows: review } = await db.query(sql, [rating, comment, product_id]);
     return review[0];
   }
+
+  export async function getReviews({ product_id }) {
+    const sql = `
+      SELECT * FROM reviews WHERE product_id = $1;
+    `;
+    const { rows: reviews } = await db.query(sql, [product_id]);
+    return reviews;
+  }
+
+  
