@@ -2,9 +2,10 @@ import express from 'express';
 const router = express.Router();
 export default router;
 
-import { createReview, getReviews } from '../db/queries/reviews.js';
+import { getReviews } from '../db/queries/reviews.js';
 
 // GET /reviews/:product_id
+
 router.route('/reviews/:product_id').get(async (req, res) => {
     const product_id  = req.params.product_id;
     if (!product_id) {
@@ -14,7 +15,7 @@ router.route('/reviews/:product_id').get(async (req, res) => {
     const reviews = await getReviews(product_id);
 
     if (!reviews || reviews.length === 0) {
-        return res.status(404).send('No reviews were found for this product');
+        return res.status(404).send('There were no reviews found for this product');
     }
 
     res.status(200).send(reviews);
