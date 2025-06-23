@@ -4,7 +4,7 @@
   export async function getProducts (){
     const sql = `
     SELECT * FROM products;
-    `
+    `;
     const {rows: products} = await db.query(sql)
     return products
   }
