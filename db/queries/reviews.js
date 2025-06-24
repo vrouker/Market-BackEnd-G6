@@ -14,10 +14,10 @@
 
 //    //Get Product Reviews
 
-   export async function getReviews ({id}){
+   export async function getReviews (product_id){
     const sql = `
     SELECT * FROM reviews WHERE product_id = $1;
     `
-    const {rows: orders} = await db.query(sql, [id])
-    return orders
+    const {rows: reviews} = await db.query(sql, [product_id])
+    return reviews[0];
   }

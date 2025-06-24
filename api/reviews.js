@@ -6,13 +6,15 @@ import { getReviews } from '../db/queries/reviews.js';
 
 // GET /reviews/:product_id
 
-router.route('/reviews/:product_id').get(async (req, res) => {
-    const product_id  = req.params.product_id;
-    if (!product_id) {
+router.route('/:id').get(async (req, res) => {
+    const  id  = req.params.id;
+
+    if (!id) {
         return res.status(400).send('Product ID is required');
     } 
     
-    const reviews = await getReviews(product_id);
+    const reviews = await getReviews(id);
+  console.log(reviews);
 
     if (!reviews || reviews.length === 0) {
         return res.status(404).send('There were no reviews found for this product');

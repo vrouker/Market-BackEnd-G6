@@ -5,6 +5,7 @@ import cors from "cors";
 import usersRouter from "./api/users.js";
 import ordersRouter from "./api/orders.js";
 import productsRouter from "./api/products.js";
+import reviewsRouter from "./api/reviews.js";
 
 
 
@@ -16,6 +17,8 @@ app.use("/users", usersRouter);
 app.use("/orders", ordersRouter);
 
 app.use("/products", productsRouter);
+
+app.use("/reviews", reviewsRouter);
 
 
 app.use((err, req, res, next)=>{
