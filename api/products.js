@@ -12,9 +12,7 @@ router.route("/").get(async(req, res)=>{
     res.send(products);
 });
 
- //GET products by ID
-
-//GET /users/me
+ //GET products/:ID
 router.route("/:id").get(async(req, res)=>{
     const id = req.params.id;
 
@@ -25,7 +23,7 @@ router.route("/:id").get(async(req, res)=>{
     const product = await getProduct(id);
 
     if (!product){
-        return res.status(404).send(`Product not found.`)
+        return res.status(404).json(`Product not found.`)
     };
 
     res.send(product);
