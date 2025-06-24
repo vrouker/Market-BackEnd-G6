@@ -27,15 +27,14 @@ router.route("/register").post(async(req, res)=>{
         console.log(`be line 27`, hashedpassword);
 
         const newUser = await createUser({username, password:hashedpassword});
-        console.log(`be 30`, newUser);
-
+        
         if (!newUser){
-            return res.status(400).send(`New user could not be registered.`)
+            return res.status(400).json(`New user could not be registered.`)
         };
 
         const token = jwt.sign({id: newUser.id, username: newUser.username}, process.env.JWT_SECRET);
 
-        res.status(201).send(token);
+        res.status(201).json(token);
 
     }catch(err){
         console.log(err);
@@ -55,12 +54,13 @@ router.route("/login").post(async(req, res)=>{
         const passwordMatch = await bcrypt.compare(password, userInfo.password);
 
         if (!passwordMatch){
-            return res.status(401).send(`Not authorized.`)
+            return res.status(401).json(`Not authorized.`)
         };
 
         const token = jwt.sign({id: userInfo.id, username: userInfo.username}, process.env.JWT_SECRET);
 
-        res.status(201).send(token);
+        res.status(201).json(token);
+    
 
     }catch(err){
         console.log(err);
@@ -71,20 +71,25 @@ router.route("/login").post(async(req, res)=>{
 
 
 //GET /users/me
-router.route("/:id").get(async(req, res)=>{
+router.route("/:id").get(verifyToken, async(req, res)=>{
+
+    if (!verifyToken){
+        return res.status(403).send(`Please log in to access the account!`)
+    };
+
     const id = req.params.id;
 
-    if(!Number.isInteger(id) && id < 0){
-        return res.status(400).send(`Please use a valid number for the ID.`)
+    if(isNaN(id) || id < 0){
+        return res.status(400).json(`Please use a valid number for the ID.`)
     };
 
     const user = await getUserById(id);
 
     if (!user){
-        return res.status(404).send(`User not found.`)
+        return res.status(404).json(`User not found.`)
     };
 
-    res.send(user);
+    res.send(user[0]);
 });
 
 
