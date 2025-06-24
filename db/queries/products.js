@@ -13,7 +13,7 @@
 
    export async function getProduct ({id}){
     const sql = `
-    SELECT * FROM orders WHERE id = $1;
+    SELECT * FROM products WHERE id = $1;
     `
     const {rows: product} = await db.query(sql, [id])
     return product
@@ -22,8 +22,8 @@
  /** @returns the entry created according to the provided details */
   export async function createProduct({ title, description, price }) {
     const sql = `
-      INSERT INTO users (title, description, price)
-      VALUES ($1, $2)
+      INSERT INTO products (title, description, price)
+      VALUES ($1, $2, $3)
       RETURNING *;
     `;
     const { rows: product } = await db.query(sql, [title, description, price]);
