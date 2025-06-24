@@ -11,12 +11,12 @@
 
  //GET products by ID
 
-   export async function getProduct ({id}){
+   export async function getProduct (id){
     const sql = `
     SELECT * FROM products WHERE id = $1;
     `
     const {rows: product} = await db.query(sql, [id])
-    return product
+    return product[0];
   }
 
  /** @returns the entry created according to the provided details */
