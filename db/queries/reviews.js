@@ -4,7 +4,7 @@
 
   export async function createReview({ rating, comment, product_id }) {
     const sql = `
-      INSERT INTO users (rating, comment, product_id)
+      INSERT INTO reviews (rating, comment, product_id)
       VALUES ($1, $2, $3)
       RETURNING *;
     `;

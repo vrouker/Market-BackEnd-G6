@@ -28,7 +28,7 @@ async function seed() {
 
 
     // Seed Orders
-    await createOrder({date: "09012024", note: "There he goes.", user_id: 1})
+    await createOrder({date: "2024-09-01", note: "There he goes.", user_id: 1})
 
     // Seed Reviews
     await createReview({rating: 5, comment: "Best Plane Ever", product_id: 1})
