@@ -4,7 +4,7 @@ export default router;
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-import { createUser, loginUser, getUserById } from "../db/queries/users.js";
+import { createUser, loginUser, getUserById, getUserInfo } from "../db/queries/users.js";
 
 
 //verifyToken
@@ -17,7 +17,21 @@ export const verifyToken = (req, res, next)=>{
     next();
 };
 
+//Get /users/getInfo
+router.route("/login/getInfo/:id").get(async(req, res)=>{
+    const username = req.params.id;
 
+    try{
+        const userInfo = await getUserInfo({username});
+
+        res.status(201).json(userInfo);
+    
+
+    }catch(err){
+        console.log(err);
+        res.json(`Unable to get User Info.`)
+    }
+});
 
 //POST /users/register
 router.route("/register").post(async(req, res)=>{

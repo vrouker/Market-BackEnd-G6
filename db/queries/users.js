@@ -34,3 +34,13 @@ export async function getUserById(id){
 
   return user;
 };
+
+//getUserInfo
+export async function getUserInfo({username}){
+  const sql = `
+    SELECT id FROM users WHERE username = $1;`;
+    console.log(username)
+  const {rows: user} = await db.query(sql, [username]);
+
+  return user[0];
+};
