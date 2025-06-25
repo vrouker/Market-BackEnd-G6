@@ -13,7 +13,7 @@ router.route('/:id').get(async (req, res) => {
         return res.status(400).send('Product ID is required');
     } 
     
-    const reviews = await getReviews(id);
+    const reviews = await getReviewsId(id);
   console.log(reviews);
 
     if (!reviews || reviews.length === 0) {

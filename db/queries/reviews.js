@@ -14,7 +14,7 @@
 
 //    //Get Product Reviews
 
-   export async function getReviews (product_id){
+   export async function getReviewsId (product_id){
     const sql = `
     SELECT * FROM reviews WHERE product_id = $1;
     `
