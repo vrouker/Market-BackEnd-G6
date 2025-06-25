@@ -16,7 +16,6 @@
     SELECT * FROM orders WHERE user_id = $1;
     `
     const {rows: orders} = await db.query(sql, [user_id])
-    console.log(orders)
     return orders
   }
 
