@@ -15,7 +15,7 @@ import { getOrders, createOrder } from "../db/queries/orders.js";
 
 // Get /orders/:id locked 
 router.route("/:id").get(verifyToken, async(req, res)=>{
-    const id = Number(req.params.id)
+    const id = (req.params.id)
     const foundOrder = await getOrders(id)
     
     if(!foundOrder){
@@ -28,7 +28,7 @@ router.route("/:id").get(verifyToken, async(req, res)=>{
 //Post /orders locked
 router.route("/:id").post(verifyToken, async(req, res)=>{
    
-    const id = Number(req.params.id) 
+    const id = (req.params.id) 
     
     const { date, note, user_id } = req.body
     if(!verifyToken){
