@@ -16,7 +16,7 @@ router.route("/").get(async(req, res)=>{
 router.route("/:id").get(async(req, res)=>{
     const id = req.params.id;
 
-    if(!Number.isInteger(id) && id < 0){
+    if(isNaN(id) || id < 0){
         return res.status(400).send(`Please use a valid number for the ID.`)
     };
 
