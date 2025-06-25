@@ -21,3 +21,12 @@
     const {rows: reviews} = await db.query(sql, [product_id])
     return reviews[0];
   }
+
+// Get all reviews
+export async function getReviews() {
+  const sql = `
+    SELECT * FROM reviews;
+  `;
+  const { rows: reviews } = await db.query(sql);
+  return reviews;
+}
