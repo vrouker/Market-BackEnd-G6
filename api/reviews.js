@@ -2,7 +2,18 @@ import express from 'express';
 const router = express.Router();
 export default router;
 
-import { getReviews } from '../db/queries/reviews.js';
+import { getReviews, getReviewsId } from '../db/queries/reviews.js';
+
+// GET /reviews
+router.route('/').get(async (req, res) => {
+    const reviews = await getReviews();
+
+    if (!reviews || reviews.length === 0) {
+        return res.status(404).send('There were no reviews found');
+    }
+
+    res.status(200).send(reviews);
+});
 
 // GET /reviews/:product_id
 
@@ -23,13 +34,3 @@ router.route('/:id').get(async (req, res) => {
     res.status(200).send(reviews);
 })
 
-// GET /reviews
-router.route('/reviews').get(async (req, res) => {
-    const reviews = await getReviews();
-
-    if (!reviews || reviews.length === 0) {
-        return res.status(404).send('There were no reviews found');
-    }
-
-    res.status(200).send(reviews);
-});
