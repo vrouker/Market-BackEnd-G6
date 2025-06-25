@@ -7,10 +7,10 @@ import { getOrders, createOrder } from "../db/queries/orders.js";
 
 
 // Get/orders locked
-router.route("/").get(verifyToken, async(req, res)=>{
-    const orders = await getOrders()
-    res.send(orders)
-});
+// router.route("/").get(verifyToken, async(req, res)=>{
+//     const orders = await getOrders()
+//     res.send(orders)
+// });
 
 
 // Get /orders/:id locked 
