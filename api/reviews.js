@@ -22,3 +22,14 @@ router.route('/:id').get(async (req, res) => {
 
     res.status(200).send(reviews);
 })
+
+// GET /reviews
+router.route('/reviews').get(async (req, res) => {
+    const reviews = await getReviews();
+
+    if (!reviews || reviews.length === 0) {
+        return res.status(404).send('There were no reviews found');
+    }
+
+    res.status(200).send(reviews);
+});
