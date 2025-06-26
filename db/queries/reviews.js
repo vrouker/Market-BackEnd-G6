@@ -16,10 +16,11 @@
 
    export async function getReviewsId (product_id){
     const sql = `
-    SELECT * FROM reviews WHERE product_id = $1;
+    SELECT * FROM reviews WHERE product_id = $1
+    ;
     `
     const {rows: reviews} = await db.query(sql, [product_id])
-    return reviews[0];
+    return reviews;
   }
 
 // Get all reviews
