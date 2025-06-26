@@ -15,7 +15,7 @@ async function seed() {
 
     // Seed Products
     await createProduct({title: "Gulfstream G600", description: "A high-speed luxury business jet with a 7,500-mile range, cutting-edge avionics, and an ultra-comfortable cabin. Symbol of wealth and elite travel.", price: 59500000.00, imageUrl: "https://d36vpv0zv8va20.cloudfront.net/images/G600_Image.20230215.jpg"})
-    await createProduct({title: "Paper Airplane", description: "A folded sheet of paper that glides using basic aerodynamics. Simple, fun, and a timeless symbol of imagination.", price: 1.01, imageUrl: "https://content.instructablehttps://content.instructables.com/FQ1/093L/IJAEI4D3/FQ1093LIJAEI4D3.jpg?auto=webp&frame=1s.com/FMZ/FOZH/IJ35256U/FMZFOZHIJ35256U.jpg?auto=webp&frame=1&width=400&height=1024&fit=bounds&md=MjAxNi0wMS0wNiAyMToxMTowNy4w"})
+    await createProduct({title: "Paper Airplane", description: "A folded sheet of paper that glides using basic aerodynamics. Simple, fun, and a timeless symbol of imagination.", price: 1.01, imageUrl: "https://content.instructables.com/FQ1/093L/IJAEI4D3/FQ1093LIJAEI4D3.jpg?auto=webp&frame=1"})
     await createProduct({title: "Cessna 172", description: "The ubiquitous four-seat single-engine trainer, known for reliability, simplicity, and ease of operation. Popular for flight training and personal use.", price: 450000.00, imageUrl: "https://flyingmag1.b-cdn.net/wp-content/uploads/sites/2/2012/02/399113-_BP20765-6c1cfd-original-1629145877-scaled-1.jpg?width=2560&height=1707"})
     await createProduct({title: "Boeing 737", description: "A twin-engine narrow-body airliner seating 126-215 passengers. Widely used in commercial and VIP/private configurations.", price: 89100000.00, imageUrl: "https://images.aircharterservice.com/global/aircraft-guide/group-charter/boeing-b737-400-800-900-1.jpg"})
     await createProduct({title: "Robinson R44", description: "Four-seat piston helicopter with Lycoming engine; commonly used for training, private use, and light utility operations.", price: 465000.00, imageUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSToXLxW_OwtC3utOZh6lJk3J9eAkd55tKwgA&s"})
@@ -32,7 +32,7 @@ async function seed() {
 
     // Seed Reviews
     await createReview({rating: 5, comment: "Best Plane Ever", product_id: 1})
-    await createReview({rating: 1, comment: "Left me standard in New Mexico, would not recommend", product_id: "2"})
+    await createReview({rating: 1, comment: "Left me stranded in New Mexico, would not recommend", product_id: "2"})
     await createReview({rating: 5, comment: "Rescued me from Isengard", product_id: 11})
 
 
