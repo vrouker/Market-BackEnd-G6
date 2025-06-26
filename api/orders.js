@@ -16,7 +16,7 @@ import { getOrders, createOrder } from "../db/queries/orders.js";
 // Get /orders/:id locked 
 router.route("/:id").get(verifyToken, async(req, res)=>{
     const id = (req.params.id)
-    const foundOrder = await getOrders(id)
+    const foundOrder = await getOrders(req.params.id)
     
     if(!foundOrder){
         return res.status(400).send("There is no order with that id")
