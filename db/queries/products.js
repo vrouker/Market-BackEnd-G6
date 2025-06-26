@@ -20,13 +20,13 @@
   }
 
  /** @returns the entry created according to the provided details */
-  export async function createProduct({ title, description, price }) {
+  export async function createProduct({ title, description, price, imageUrl }) {
     const sql = `
-      INSERT INTO products (title, description, price)
-      VALUES ($1, $2, $3)
+      INSERT INTO products (title, description, price, imageUrl)
+      VALUES ($1, $2, $3, $4)
       RETURNING *;
     `;
-    const { rows: product } = await db.query(sql, [title, description, price]);
+    const { rows: product } = await db.query(sql, [title, description, price, imageUrl]);
     return product[0];
   }
 
