@@ -9,15 +9,14 @@
     `;
     const { rows: order } = await db.query(sql, [date, note, user_id]);
     return order[0];
-  }
+  };
 
-  export async function getOrders ({user_id}){
+  export async function getOrders (user_id){
     const sql = `
     SELECT * FROM orders WHERE user_id = $1;
     `
     const {rows: orders} = await db.query(sql, [user_id])
-    console.log(orders)
     return orders
-  }
+  };
 
  
