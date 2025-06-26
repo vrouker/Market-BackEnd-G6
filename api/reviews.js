@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 export default router;
 
-import { getReviews, getReviewsId } from '../db/queries/reviews.js';
+import { getReviews, getReviewsId,createReview } from '../db/queries/reviews.js';
 
 // GET /reviews- Get all reviews
 router.route('/').get(async (req, res) => {
@@ -47,7 +47,7 @@ router.route('/').post(async (req, res) => {
     }
 
     try {
-        const review = await createReview({ rating, comment, product_id });
+        const review = await createReview( {rating, comment, product_id} );
         res.status(201).send(review);
     } catch (error) {
         console.error(error);
